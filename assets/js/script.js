@@ -26,13 +26,8 @@ class Reproductor extends Multimedia {
         return this.#id;
     }
 
-    playMultimedia(url) {
-        console.log(url)
-        if (url) {
-            cargarVideo.cargar(this.getId(), url);
-        } else {
-            cargarVideo.cargar(this.getId(), this.getUrl());
-        }
+    playMultimedia() {
+        cargarVideo.cargar(this.getUrl(), this.getId());
     }
 
     setInicio(segundos = 0) {
@@ -60,26 +55,28 @@ class Reproductor extends Multimedia {
 
 var cargarVideo = (function () {
     // parte privada
-    let cargarPrivado = function (id, url) {
+    let cargarPrivado = function (url, id) {
+        console.log(url);
+        console.log(id);
         document.getElementById(id).setAttribute("src", url);
     };
     // parte publica
     return {
-        cargar: function (id, url) {
-            cargarPrivado(id, url);
+        cargar: function (url, id) {
+            cargarPrivado(url, id);
         }
     }
 })()
 
 
-var movie = new Reproductor("https://www.youtube.com/embed/oJbkDHG3gJA", "Música");
-movie.setInicio(30);
-movie.playMultimedia();
+let musica = new Reproductor('https://www.youtube.com/embed/rrGMENN1iaY', "musica");
+musica.setInicio(30);
+musica.playMultimedia();
 
-var movie = new Reproductor("https://www.youtube.com/embed/tamqQAC696o", "Películas");
-movie.setInicio(30);
-movie.playMultimedia();
+let peliculas = new Reproductor("https://www.youtube.com/embed/tamqQAC696o", "peliculas");
+peliculas.setInicio(30);
+peliculas.playMultimedia();
 
-var movie = new Reproductor("https://www.youtube.com/embed/bJmX5DUkw2Q", "Series");
-movie.setInicio(30);
-movie.playMultimedia();
+let series = new Reproductor("https://www.youtube.com/embed/bJmX5DUkw2Q", "series");
+series.setInicio(30);
+series.playMultimedia();
